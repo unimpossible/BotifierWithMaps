@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
 import android.preference.Preference;
@@ -23,9 +24,13 @@ import android.graphics.ColorFilter;
 import android.graphics.ColorMatrix;
 import android.graphics.ColorMatrixColorFilter;
 import android.graphics.drawable.Drawable;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ListView;
 
 import com.github.grimpy.botifier.R;
 
@@ -58,7 +63,7 @@ public class ApplicationFilterFragment extends PreferenceFragment {
 	        return a.getTitle().toString().compareTo(b.getTitle().toString());
 	    }
 	}
-	
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -100,9 +105,15 @@ public class ApplicationFilterFragment extends PreferenceFragment {
 		for (AppPreference pref: prefs) {
 			mBlackList.addPreference(pref);
 		}
+
+	}
+	@Override
+	public void onViewCreated(View view, Bundle savedInstanceState) {
+		ListView lv = (ListView) view.findViewById(android.R.id.list);
+		lv.setFastScrollEnabled(true);
 	}
 
-    @Override
+	@Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         MenuItem item = menu.add(R.string.select_all);
         item.setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
