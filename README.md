@@ -1,5 +1,11 @@
-Botifier
+Botifier with Maps
 ========
+
+Changes from Botifier:
+* Filters for Google Maps to display turn by turn directions
+* Filters for "hello" text messaging app
+* Minor UI improvements
+** Fast Scrolling Whitelist page
 
 Pushes Android notifications from the notification drawer to any connected bluetooth device supporting AVRCP 1.3
 
@@ -24,4 +30,4 @@ Goto Settings -> Accessiblity -> Enable Botifier
 
 Do not enable both methods which will cause unexpected behaviour.
 
-Source available @ https://github.com/grimpy/Botifier
+Forked from https://github.com/grimpy/Botifier

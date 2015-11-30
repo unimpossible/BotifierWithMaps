@@ -74,6 +74,33 @@ public class Botification implements Parcelable {
 		mDescription = description;
 		mText = text;
 	}
+
+	public void performCleanup(){
+		Log.d(TAG, toString());
+		if (mSharedPref.getBoolean("clean_maps", true)) {
+			//Log.d(TAG, "cleaning maps.. " + this.toString());
+			if (mPkg.equals("com.google.android.apps.maps")) {
+				/* Example Google Maps Directions:
+				mText: 1904 18th St NW
+                	    8:23 PM
+						Head east on E East St toward North St
+				mTag: null
+				mDescription:
+				 */
+				// Split the newlines
+				String t[] = mText.split("\\r?\\n");
+				// Grab only the last line (the direction)
+				mText = t[t.length - 1];
+
+				return;
+			}
+		}
+
+		// process "Hello" App text
+		if (mText.startsWith("hello ")){
+			mText = mText.substring(5);
+		}
+	}
 	
 	private String getPackageLabel(Service service, String packagename){
 		PackageManager packageManager = service.getPackageManager();
